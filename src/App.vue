@@ -1,28 +1,32 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <TodoList :todos="todos" @delete-todo="deleteToDo" />
+    
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import  TodoList from './components/TodoList.vue'
 
 export default {
-  name: 'App',
+  name: 'app',
+  data() {
+    return {
+      todos: ['ложить камень', 'вырубить наклонную ливневку во дворе', ' ливневка на улице(хотя бы примерить и основание наметить)','подмести']
+    }
+  },
   components: {
-    HelloWorld
+    TodoList
+  },
+  methods: {
+    deleteToDo(index){
+      this.todos.splice(index,1);
+    }
   }
 }
+
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+
 </style>
